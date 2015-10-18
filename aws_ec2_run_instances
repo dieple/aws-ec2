@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd ~/sandboxes/aws
+
+aws ec2 run-instances \
+          --image-id ami-47a23a30 \
+          --instance-type t2.micro \
+	  --count 1 \
+	  --key-name DevOpsService \
+          --security-group-ids sg-480cac2c \
+          --subnet-id subnet-4ad2b413 \
+          --disable-api-termination \
+          --instance-initiated-shutdown-behavior stop \
+          --associate-public-ip-address \
+          --block-device-mappings file://mapping.json \
+          --user-data file://install-packages
